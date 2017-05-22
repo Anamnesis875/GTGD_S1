@@ -9,6 +9,10 @@ using System.Collections;
 public class BlasterScript : MonoBehaviour
 {
     // Variables Start_____________________________________________________________________________
+    // The explosion effect is attached to this
+    // in the inspector.
+    public GameObject blasterExplosion;
+
     // A quick reference.
     private Transform myTransform;
 
@@ -55,6 +59,9 @@ public class BlasterScript : MonoBehaviour
             if(hit.transform.tag == "Floor")
             {
                 expended = true;
+
+                // Instantiate an explosion effect.
+                Instantiate(blasterExplosion, hit.point, Quaternion.identity);
 
                 // Make the projectile become invisible.
                 myTransform.renderer.enabled = false;
