@@ -47,6 +47,7 @@
      <Compile Include="Assets\Scripts\BlasterScript.cs" />
      <Compile Include="Assets\Scripts\CameraScript.cs" />
      <Compile Include="Assets\Scripts\FireBlaster.cs" />
+     <Compile Include="Assets\Scripts\MultiplayerScript.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\ skybox info.txt" />
   </ItemGroup>
   <ItemGroup>
