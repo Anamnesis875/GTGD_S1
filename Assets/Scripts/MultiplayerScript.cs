@@ -35,7 +35,11 @@ public class MultiplayerScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-	
+        serverName = PlayerPrefs.GetString("serverName");
+        if (serverName == "")
+        {
+            serverName = "Server";
+        }
 	}
 	
 	// Update is called once per frame
@@ -72,6 +76,35 @@ public class MultiplayerScript : MonoBehaviour
                 {
                     Application.Quit();
                 }
+            }
+        }
+
+        if (iWantToSetupAServer == true)
+        {
+            // The user can type a name for their server into
+            // the textfield.
+            GUILayout.Label("Enter a name for your server");
+            serverName = GUILayout.TextField(serverName);
+            GUILayout.Space(5);
+
+            // The user can type a port number for their server
+            // into the textfield. We definde a default value above in the
+            // variables as 26500.
+            GUILayout.Label("Server Port");
+            connectionPort = int.Parse(GUILayout.TextField(connectionPort.ToString()));
+            GUILayout.Space(10);
+            if (GUILayout.Button("Start my own server", GUILayout.Height(30)))
+            {
+                // Create the server.
+                Network.InitializeServer(numberOfPlayers, connectionPort, useNAT);
+
+                // Save the serverName using PlayerPrefs.
+                PlayerPrefs.SetString("serverName", serverName);
+                iWantToSetupAServer = false;
+            }
+            if (GUILayout.Button("Go Back", GUILayout.Height(30)))
+            {
+                iWantToSetupAServer = false;
             }
         }
     }
